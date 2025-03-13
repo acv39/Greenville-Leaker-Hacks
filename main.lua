@@ -6,6 +6,7 @@ FinityWindow.ChangeToggleKey(Enum.KeyCode.Semicolon)
 
 local GeneralCheats = FinityWindow:Category("General")
 local vflysec = GeneralCheats:Sector("Vehicle Flight")
+local carflysec = GeneralCheats:Sector("Car Fly")
 local carmodsec = GeneralCheats:Sector("Car Mods")
 local tpsec = GeneralCheats:Sector("Teleports (Avoid Admin Watch)")
 local speedsec = GeneralCheats:Sector("Speed Hacks")
@@ -168,6 +169,18 @@ carmodsec:Cheat("Button","Increase Friction (More Grip)",function()
 		)
 	end	
 end)
+carmodsec:Cheat("Button","Goofy Wheels",function()
+	local player = game.Players.LocalPlayer
+	local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
+	local MainBody = PlayerCar:FindFirstChild("Body")
+	local Wheels = PlayerCar:FindFirstChild("Wheels")
+	for _, wheel in ipairs(Wheels:GetChildren()) do
+		print(wheel.Name)
+		local spring = wheel:FindFirstChild("Spring")
+		spring.MinLength = 5
+		spring.MaxLength = 15
+	end	
+end)
 carmodsec:Cheat("Button","Disable Weight",function()
 	local player = game.Players.LocalPlayer
 	local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
@@ -185,7 +198,7 @@ carmodsec:Cheat("Button","Disable Weight",function()
 end)
 
 local teleportDistance = 100  -- Distance threshold for teleportation
-local teleportHeight = 0
+local teleportHeight = 5
 local tpfar = false
 
 vflysec:Cheat("Checkbox","Teleport To Car When Far",function(Value)
@@ -349,4 +362,8 @@ end)
 
 debugsec:Cheat("Button","Add ESP Ui",function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/acv39/Greenville-Leaker-Hacks/refs/heads/main/ESP.lua",true))()
+end)
+
+debugsec:Cheat("Button","Add Dex UI",function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 end)
