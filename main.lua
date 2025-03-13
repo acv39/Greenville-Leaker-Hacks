@@ -6,7 +6,6 @@ FinityWindow.ChangeToggleKey(Enum.KeyCode.Semicolon)
 
 local GeneralCheats = FinityWindow:Category("General")
 local vflysec = GeneralCheats:Sector("Vehicle Flight")
-local carflysec = GeneralCheats:Sector("Car Fly")
 local carmodsec = GeneralCheats:Sector("Car Mods")
 local tpsec = GeneralCheats:Sector("Teleports (Avoid Admin Watch)")
 local speedsec = GeneralCheats:Sector("Speed Hacks")
