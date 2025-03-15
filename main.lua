@@ -237,7 +237,6 @@ griefsec:Cheat("Button","Break Cars Seat",function()
         local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
         PlayerCar.DriveSeat:Destroy()
         end
-    end
 end)
 griefsec:Cheat("Button","Break Cars",function()
 	for _, player in ipairs(game.Players:GetPlayers()) do
