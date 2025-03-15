@@ -231,6 +231,14 @@ griefsec:Cheat("Button","Goofy Wheels For All",function()
         end
     end
 end)
+griefsec:Cheat("Button","Break Cars Seat",function()
+	for _, player in ipairs(game.Players:GetPlayers()) do
+        print(player.Name)
+        local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
+        PlayerCar.DriveSeat:Destroy()
+        end
+    end
+end)
 griefsec:Cheat("Button","Break Cars",function()
 	for _, player in ipairs(game.Players:GetPlayers()) do
         print(player.Name)
