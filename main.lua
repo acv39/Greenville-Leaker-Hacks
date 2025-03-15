@@ -183,18 +183,6 @@ carmodsec:Cheat("Button","Increase Friction (More Grip)",function()
 		)
 	end	
 end)
-carmodsec:Cheat("Button","Goofy Wheels",function()
-	local player = game.Players.LocalPlayer
-	local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
-	local MainBody = PlayerCar:FindFirstChild("Body")
-	local Wheels = PlayerCar:FindFirstChild("Wheels")
-	for _, wheel in ipairs(Wheels:GetChildren()) do
-		print(wheel.Name)
-		local spring = wheel:FindFirstChild("Spring")
-		spring.MinLength = 5
-		spring.MaxLength = 15
-	end	
-end)
 carmodsec:Cheat("Button","Disable Weight",function()
 	local player = game.Players.LocalPlayer
 	local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
@@ -209,6 +197,38 @@ carmodsec:Cheat("Button","Disable Weight",function()
 		props.FrictionWeight,    -- Keep the same friction weight
 		props.ElasticityWeight   -- Keep the same elasticity weight
 	)
+end)
+carmodsec:Cheat("Button","Goofy Wheels",function()
+	local player = game.Players.LocalPlayer
+	local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
+	local MainBody = PlayerCar:FindFirstChild("Body")
+	local Wheels = PlayerCar:FindFirstChild("Wheels")
+	for _, wheel in ipairs(Wheels:GetChildren()) do
+		print(wheel.Name)
+		local spring = wheel:FindFirstChild("Spring")
+		spring.MinLength = 5
+		spring.MaxLength = 15
+	end	
+end)
+carmodsec:Cheat("Label","Goofy Wheels For All Only Works When Near Car You Want To Bug + When Nobody's Inside It")
+carmodsec:Cheat("Button","Goofy Wheels For All",function()
+	for _, player in ipairs(game.Players:GetPlayers()) do
+        print(player.Name)
+        local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
+        if PlayerCar then
+            local Wheels = PlayerCar:FindFirstChild("Wheels")
+            if Wheels then
+                for _, wheel in ipairs(Wheels:GetChildren()) do
+                    local spring = wheel:FindFirstChild("Spring")
+                    if spring then
+                        spring.MinLength = 15
+                        spring.MaxLength = 20
+                        print(wheel.Name)
+                    end
+                end
+            end
+        end
+    end
 end)
 
 local teleportDistance = 100  -- Distance threshold for teleportation
