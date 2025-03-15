@@ -7,7 +7,8 @@ FinityWindow.ChangeToggleKey(Enum.KeyCode.Semicolon)
 local GeneralCheats = FinityWindow:Category("General")
 local vflysec = GeneralCheats:Sector("Vehicle Flight")
 local carmodsec = GeneralCheats:Sector("Car Mods")
-local tpsec = GeneralCheats:Sector("Teleports (Avoid Admin Watch)")
+local griefsec = GeneralCheats:Sector("Griefer Hacks")
+local tpsec = GeneralCheats:Sector("Teleports")
 local speedsec = GeneralCheats:Sector("Speed Hacks")
 
 local speed = 200  -- Forward/backward vfly speed
@@ -210,8 +211,27 @@ carmodsec:Cheat("Button","Goofy Wheels",function()
 		spring.MaxLength = 15
 	end	
 end)
-carmodsec:Cheat("Label","Goofy Wheels For All Only Works When Near Car You Want To Bug + When Nobody's Inside It")
-carmodsec:Cheat("Button","Goofy Wheels For All",function()
+griefsec:Cheat("Label","Cheats Below Only Work When Near Car You Want To Grief")
+griefsec:Cheat("Button","Goofy Wheels For All",function()
+	for _, player in ipairs(game.Players:GetPlayers()) do
+        print(player.Name)
+        local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
+        if PlayerCar then
+            local Wheels = PlayerCar:FindFirstChild("Wheels")
+            if Wheels then
+                for _, wheel in ipairs(Wheels:GetChildren()) do
+                    local spring = wheel:FindFirstChild("Spring")
+                    if spring then
+                        spring.MinLength = 5
+                        spring.MaxLength = 15
+                        print(wheel.Name)
+                    end
+                end
+            end
+        end
+    end
+end)
+griefsec:Cheat("Button","Break Cars",function()
 	for _, player in ipairs(game.Players:GetPlayers()) do
         print(player.Name)
         local PlayerCar = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
@@ -222,7 +242,7 @@ carmodsec:Cheat("Button","Goofy Wheels For All",function()
                     local spring = wheel:FindFirstChild("Spring")
                     if spring then
                         spring.MinLength = 15
-                        spring.MaxLength = 20
+                        spring.MaxLength = 30
                         print(wheel.Name)
                     end
                 end
