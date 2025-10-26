@@ -29,9 +29,7 @@ local function TeleportPlayer(x,y,z)
 	end
 end
 
-tpsec:Cheat("Button","Dealership Interior",function()
-	TeleportPlayer(-1580, -78, -11434)
-end)
+
 tpsec:Cheat("Button","Dealership",function()
 	TeleportPlayer(-1728, -78.313, -11607.6)
 end)
@@ -55,9 +53,6 @@ tpsec:Cheat("Button","Apartments",function()
 end)
 tpsec:Cheat("Button","Airport",function()
 	TeleportPlayer(5784.272, -78.313, -9934.6)
-end)
-tpsec:Cheat("Button","Horton Gas Station",function()
-	TeleportPlayer(-3866, -108, 1419)
 end)
 
 -- everything else
@@ -261,6 +256,40 @@ griefsec:Cheat("Button","Break Cars",function()
                         spring.MinLength = 15
                         spring.MaxLength = 30
                         print(wheel.Name)
+                    end
+                end
+            end
+        end
+    end
+end)
+griefsec:Cheat("Button", "Glitch Collisions (Drive thru ppl)", function()
+    local localPlayer = game.Players.LocalPlayer
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= localPlayer then
+            print("Disabling collisions for:", player.Name)
+            local sessionVehicles = workspace:FindFirstChild("SessionVehicles")
+            if not sessionVehicles then
+                warn("SessionVehicles folder not found!")
+                continue
+            end
+            local playerCar = sessionVehicles:FindFirstChild(player.Name .. "-Car")
+            if playerCar then
+                local body = playerCar:FindFirstChild("Body")
+                if body then
+                    -- remove "Color" parts directly under body
+                    for _, part in ipairs(body:GetChildren()) do
+                        if part.Name == "Color" then
+                            part:Destroy()
+                        end
+                    end
+                    -- check nested "realbody" inside body
+                    local realbody = body:FindFirstChild("Body")
+                    if realbody then
+                        for _, part in ipairs(realbody:GetChildren()) do
+                            if part.Name == "Color" then
+                                part:Destroy()
+                            end
+                        end
                     end
                 end
             end
