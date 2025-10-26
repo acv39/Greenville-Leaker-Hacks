@@ -55,7 +55,7 @@ tpsec:Cheat("Button","Airport",function()
 	TeleportPlayer(5784.272, -78.313, -9934.6)
 end)
 tpsec:Cheat("Button","Cenex Intersection",function()
-	TeleportPlayer(255,-114,-2425)
+	TeleportPlayer(295,-114,-2084)
 end)
 
 -- everything else
@@ -470,15 +470,16 @@ debugsec:Cheat("Button","Add Dex UI",function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 end)
 debugsec:Cheat("Button","Curb Sizing",function()
-	local i1c = workspace.RenderChunks:FindFirstChild("Intersection 1 Curbing")
-	if i1c then
-		for _, curbs in ipairs(i1c:GetDescendants()) do
-			if curbs:IsA("BasePart") then
-				curbs.Size = Vector3.new(curbs.Size.X, 500, curbs.Size.Z)
-			end
-		end
+	local union = workspace:FindFirstChild("Folder"):FindFirstChild("Union")
+
+	if union and union:IsA("BasePart") then
+		-- set orientation (rotation)
+		union.Orientation = Vector3.new(180, -83.5, 160)
+	
+		-- set size
+		union.Size = Vector3.new(2048, 2048, 30)
 	else
-		warn("Intersection 1 Curbing not found!")
-	end
-end)
+		warn("Union not found or not a BasePart.")
+end
+
 
