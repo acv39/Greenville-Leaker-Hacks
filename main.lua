@@ -21,10 +21,17 @@ local speedhaxforce = 5000
 local function TeleportPlayer(x,y,z)
     local player = game.Players.LocalPlayer
 	local vehicle = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
-	local tppos = Vector3.new(x,y,z)
-	vehicle:SetPrimaryPartCFrame(CFrame.new(tppos))
+	if vehicle then
+		vehicle:SetPrimaryPartCFrame(CFrame.new(x,y,z))
+	else
+		local tppos = Vector3.new(x,y,z)
+		player.Character.PrimaryPart.CFrame = CFrame.new(tppos)
+	end
 end
 
+tpsec:Cheat("Button","Dealership Interior",function()
+	TeleportPlayer(-1580, -78, -11434)
+end)
 tpsec:Cheat("Button","Dealership",function()
 	TeleportPlayer(-1728, -78.313, -11607.6)
 end)
@@ -48,6 +55,9 @@ tpsec:Cheat("Button","Apartments",function()
 end)
 tpsec:Cheat("Button","Airport",function()
 	TeleportPlayer(5784.272, -78.313, -9934.6)
+end)
+tpsec:Cheat("Button","Horton Gas Station",function()
+	TeleportPlayer(-3866, -108, 1419)
 end)
 
 -- everything else
