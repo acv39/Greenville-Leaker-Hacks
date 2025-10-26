@@ -54,7 +54,7 @@ end)
 tpsec:Cheat("Button","Airport",function()
 	TeleportPlayer(5784.272, -78.313, -9934.6)
 end)
-tpsec:Cheat("Button","Airport",function()
+tpsec:Cheat("Button","Cenex Intersection",function()
 	TeleportPlayer(255,-114,-2425)
 end)
 
