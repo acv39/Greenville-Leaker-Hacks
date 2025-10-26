@@ -469,3 +469,16 @@ end)
 debugsec:Cheat("Button","Add Dex UI",function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 end)
+debugsec:Cheat("Button","Curb Sizing",function()
+	local i1c = workspace.RenderChunks:FindFirstChild("Intersection 1 Curbing")
+	if i1c then
+		for _, curbs in ipairs(i1c:GetDescendants()) do
+			if curbs:IsA("BasePart") then
+				curbs.Size = Vector3.new(curbs.Size.X, 500, curbs.Size.Z)
+			end
+		end
+	else
+		warn("Intersection 1 Curbing not found!")
+	end
+end)
+
