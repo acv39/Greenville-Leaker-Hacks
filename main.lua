@@ -157,6 +157,33 @@ carmodsec:Cheat("Button","Autofarm (Jump Out To Disable)",function()
 	end
 	bodyVelocity:Destroy()
 end)
+carmodsec:Cheat("Button","Pumpkin Farm",function()
+	-- Loop through all children of workspace._Halloween25Locations
+for _, location in ipairs(workspace._Halloween25Locations:GetChildren()) do
+    -- Teleport to the item (you can adjust offset if needed)
+    local hrp = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    if hrp and location:IsA("BasePart") then
+        hrp.CFrame = location.CFrame + Vector3.new(0, 3, 0) -- Teleport slightly above
+    end
+
+    -- Wait a moment for physics/network to settle
+    task.wait(0.2)
+
+    -- Find the proximity prompt within the item
+    local prompt = location:FindFirstChildWhichIsA("ProximityPrompt", true)
+    if prompt then
+        -- Set instant trigger
+        prompt.HoldDuration = 0
+
+        -- Fire the prompt (simulate player activation)
+        fireproximityprompt(prompt)
+    end
+
+    -- Small delay between locations to avoid throttling
+    task.wait(0.2)
+end
+
+end)
 carmodsec:Cheat("Button","Teleport To All Players",function()
 	local player = game.Players.LocalPlayer
 	local vehicle = workspace.SessionVehicles:FindFirstChild(player.Name .. "-Car")
