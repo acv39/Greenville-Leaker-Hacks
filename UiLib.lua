@@ -107,7 +107,7 @@ function finity:addShadow(object, transparency)
 		Position = UDim2.new(0.5, 0, 0.5, 4),
 		Size = UDim2.new(1, 6, 1, 6),
 		Image = "rbxassetid://1316045217",
-		ImageTransparency = transparency and true or 0.5,
+		ImageTransparency = tonumber(transparency) or 0.5,
 		ImageColor3 = Color3.fromRGB(35, 35, 35),
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(10, 10, 118, 118)
